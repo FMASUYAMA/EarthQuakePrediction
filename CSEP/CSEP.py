@@ -31,7 +31,7 @@ class Data:
 	# を参考にして作成
 	# lat1: 中心座標の緯度
 	# lon1: 中心座標の緯度
-	# inds: データのインデックス
+	# data: 中心座標から距離を測りたいデータ
 	# mode: 測地系の切り替え
 	def deg2dis(self, lat1, lon1, data, mode=True):
 		lat2 = data['latitude'].values
