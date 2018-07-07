@@ -41,7 +41,6 @@ class Data:
 	# lon1: 1点目の経度
 	# lat2: 2点目の緯度
 	# lon2: 2点目の経度	
-	# data: 中心座標から距離を測りたいデータ
 	# mode: 測地系の切り替え
 	def deg2dis(self, lat1, lon1, lat2, lon2, mode=True):
 		#lat2 = data['latitude'].values
