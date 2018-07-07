@@ -24,18 +24,28 @@ class Data:
 		data = self.data[sDate:eDate]
 		return data
 	#--------------------------
+
+	#--------------------------
+	# グリッド内のデータ
+	def getDataInGrid(self, sLat, sLon, eLat, eLon, data):
+		tmpData = data[(data['latitude'] >= sLat) & (data['latitude'] < eLat) &
+		 (data['longitude'] >= sLon)  & (data['longitude'] < eLon)]
+		return tmpData
+	#--------------------------
 	
 	#--------------------------
 	# ヒュベニの公式を用いた緯度・経度座標系の2点間の距離(km)
 	# https://qiita.com/chiyoyo/items/b10bd3864f3ce5c56291
 	# を参考にして作成
-	# lat1: 中心座標の緯度
-	# lon1: 中心座標の緯度
+	# lat1: 1点目の緯度
+	# lon1: 1点目の経度
+	# lat2: 2点目の緯度
+	# lon2: 2点目の経度	
 	# data: 中心座標から距離を測りたいデータ
 	# mode: 測地系の切り替え
-	def deg2dis(self, lat1, lon1, data, mode=True):
-		lat2 = data['latitude'].values
-		lon2 = data['longitude'].values
+	def deg2dis(self, lat1, lon1, lat2, lon2, mode=True):
+		#lat2 = data['latitude'].values
+		#lon2 = data['longitude'].values
 		
 		# 緯度経度をラジアンに変換
 		radLat1 = lat1/180*np.pi # 緯度１
