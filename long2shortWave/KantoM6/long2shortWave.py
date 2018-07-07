@@ -64,6 +64,8 @@ if __name__ == "__main__":
 	
 			_X.append(longDF.values)
 			_Y.append(shortDF.values)
+			
+			pdb.set_trace()
 		#--------------------
 	
 		#--------------------
@@ -74,15 +76,4 @@ if __name__ == "__main__":
 	
 
 	pdb.set_trace()
-		
-	'''
-		# 地震プレートモデル用のオブジェクト
-		log = EarthQuakePlateModel(file,nCell=nCell,nYear=nYear)
-		log.loadABLV()
-		log.convV2YearlyDataCont()
-		log.plotV(isPlotShow=False,isYearly=False)
-		
-		# 入力（waveletの係数マップ画像）と出力（b）の取得
-		log.convV2Wavelet(width=nFreqs,isPlotShow=True,isSavePkl=False)
-	'''
 #########################################

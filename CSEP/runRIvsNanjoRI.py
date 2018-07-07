@@ -70,6 +70,7 @@ if __name__ == "__main__":
 	
 		#---------------------
 		# プロット
+		plt.close()
 		fig, figInds = plt.subplots(ncols=2)
 		figInds[0].imshow(numsRI,cmap="bwr")
 		figInds[0].set_title('Relative Intensity')
@@ -79,6 +80,5 @@ if __name__ == "__main__":
 
 		fullPath = os.path.join(visualPath,'RIvsNanjoRI_{}km.png'.format(S))
 		plt.savefig(fullPath)
-		plt.show()	
 		#---------------------
 #########################################
