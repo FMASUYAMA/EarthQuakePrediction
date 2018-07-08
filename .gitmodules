@@ -1,3 +1,0 @@
-[submodule "PointCNN"]
-	path = PointCNN
-	url = https://github.com/yangyanli/PointCNN.git
