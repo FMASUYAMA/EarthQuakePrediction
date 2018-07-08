@@ -21,8 +21,8 @@ if __name__ == "__main__":
 	sTrainDay = '2000-01-01'	# 学習の開始日
 	eTrainDay = '2017-12-31'	# 学習の終了日
 
-	# 2000-01-01～2017-12-31の期間
-	data = myCSEP.limitDate(sTrainDay, eTrainDay)
+	# 2000-01-01～2017-12-31の期間に限定
+	myCSEP.limitDataDate(sTrainDay, eTrainDay)
 	
 	# CSEP関東領域グリッド（lon:138.475-141.525, lat:34.475-37.025）
 	lats = np.arange(34.475, 37.025, cellSize)
@@ -41,7 +41,7 @@ if __name__ == "__main__":
 		for i, lat in enumerate(lats):
 			print("latitude:{}...".format(lat))
 			for j, lon in enumerate(lons):
-				tmpData = myCSEP.getDataInGrid(lat, lon, lat+cellSize, lon+cellSize, data)
+				tmpData = myCSEP.getDataInGrid(lat, lon, lat+cellSize, lon+cellSize)
 
 				#-------------
 				# RI法：各セルのマグニチュードmL以上の地震をカウント

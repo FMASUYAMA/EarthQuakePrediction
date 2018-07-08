@@ -15,22 +15,31 @@ class Data:
 	def __init__(self):
 		fullPath = os.path.join(self.dataPath,'atr.dat')
 		self.data = pd.read_csv(fullPath,sep='\t',index_col='date', parse_dates=['date'])
-		self.nData = len(self.data)
+		self.alldata = self.data
 	#--------------------------
 	
 	#--------------------------
 	# 期間による絞り込み
-	def limitDate(self, sDate, eDate):
-		data = self.data[sDate:eDate]
-		return data
+	# sDate: 開始日
+	# eDate: 終了日
+	def limitDataDate(self, sDate, eDate):
+		self.data = self.data[sDate:eDate]
 	#--------------------------
 
 	#--------------------------
-	# グリッド内のデータ
-	def getDataInGrid(self, sLat, sLon, eLat, eLon, data):
-		tmpData = data[(data['latitude'] >= sLat) & (data['latitude'] < eLat) &
-		 (data['longitude'] >= sLon)  & (data['longitude'] < eLon)]
+	# グリッド内のデータ取り出し
+	# sLat: 開始緯度
+	# sLon: 開始経度
+	# eLat: 終了緯度
+	# eLon: 終了経度
+	def getDataInGrid(self, sLat, sLon, eLat, eLon):
+		tmpData = self.data[(self.data['latitude'] >= sLat) & (self.data['latitude'] < eLat) &
+		 (self.data['longitude'] >= sLon)  & (self.data['longitude'] < eLon)]
 		return tmpData
+	#--------------------------
+	
+	#--------------------------
+	# 学習データの作成
 	#--------------------------
 	
 	#--------------------------
