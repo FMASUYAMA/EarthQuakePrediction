@@ -14,15 +14,16 @@ visualPath = 'visualization'
 # NanjoRI法：グリッドごとの地震回数を半径Sの円に入るグリッド数で平滑化
 
 if __name__ == "__main__":
-	myCSEP = CSEP.Data()
 	cellSize = 0.05				# セルの大きさ（°）
 	mL = 2.5					# 最小マグニチュード
 	Ss = [10, 30,50,100]		# 平滑化パラメータ（グリッド中心からの距離[km]）
-	sTrainDay = '2000-01-01'	# 学習の開始日
-	eTrainDay = '2017-12-31'	# 学習の終了日
+	sTrainDay = '1980-01-01'	# 学習の開始日
+	eTrainDay = '2016-12-31'	# 学習の終了日
+	sTestDay = '2017-01-01'		# 評価の開始日
+	eTestDay = '2017-12-31'		# 評価の終了日
 
-	# 2000-01-01～2017-12-31の期間に限定
-	myCSEP.limitDataDate(sTrainDay, eTrainDay)
+	# CSEPのデータクラス
+	myCSEP = CSEP.Data(sTrainDay, eTrainDay, sTestDay, eTestDay)
 	
 	# CSEP関東領域グリッド（lon:138.475-141.525, lat:34.475-37.025）
 	lats = np.arange(34.475, 37.025, cellSize)
@@ -41,7 +42,7 @@ if __name__ == "__main__":
 		for i, lat in enumerate(lats):
 			print("latitude:{}...".format(lat))
 			for j, lon in enumerate(lons):
-				tmpData = myCSEP.getDataInGrid(lat, lon, lat+cellSize, lon+cellSize)
+				tmpData = myCSEP.getDataInGrid(lat, lon, lat+cellSize, lon+cellSize, dataType="train")
 
 				#-------------
 				# RI法：各セルのマグニチュードmL以上の地震をカウント
