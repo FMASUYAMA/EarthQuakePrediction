@@ -114,6 +114,28 @@ class Data:
 		#--------------------		
 	#--------------------------
 	
+	#------------------------------------
+	# pointCNN用のミニバッチの取り出し
+	def nextPointCNNBatch(self,batchSize):
+
+		sInd = batchSize * self.batchCnt
+		eInd = sInd + batchSize
+
+		batchX = []
+		batchY = []
+		'''
+		batchX = self.xTrain[self.batchRandInd[sInd:eInd]]
+		batchY = self.yTrain[self.batchRandInd[sInd:eInd]]
+		'''
+		
+		if eInd+batchSize > self.nTrain:
+			self.batchCnt = 0
+		else:
+			self.batchCnt += 1
+
+		return batchX, batchY
+	#------------------------------------
+		
 	#--------------------------
 	# ヒュベニの公式を用いた緯度・経度座標系の2点間の距離(km)
 	# https://qiita.com/chiyoyo/items/b10bd3864f3ce5c56291
