@@ -9,16 +9,16 @@ import pandas.tseries.offsets as offsets
 
 #########################################
 class Data:
-	dataPath = 'data'
-
+	
 	#--------------------------
 	# データの読み込み
-	def __init__(self, sTrain, eTrain, sTest, eTest):
+	def __init__(self, sTrain, eTrain, sTest, eTest, dataPath='data'):
 		self.sTrain = sTrain
 		self.eTrain = eTrain
 		self.sTest = sTest
 		self.eTest = eTest
-		
+		self.dataPath = dataPath
+        
 		fullPath = os.path.join(self.dataPath,'atr.dat')
 		self.data = pd.read_csv(fullPath,sep='\t',index_col='date', parse_dates=['date'])
 		
@@ -74,7 +74,9 @@ class Data:
 		
 		# 現在の日時
 		currentDT = sTrainDT
+		endDTList = [] # Saito temporarily added (7/9)
 		while currentDT + winInOffset + winOutOffset <= eTrainDT:
+			endDTList.append(currentDT+winInOffset) # Saito temporarily added (7/9)
 		
 			# 現在の日時からwinInOffset分を抽出
 			self.dfX.append(self.dataTrain[currentDT:currentDT+winInOffset])
@@ -85,6 +87,8 @@ class Data:
 			# 現在の日時をstrideOffset分ずらす
 			currentDT = currentDT + strideOffset
 		#---------------
+        
+		return self.dfX, self.dfY, endDTList, # Saito temporarily added (7/9)
 	#--------------------------
 
 	#--------------------------
