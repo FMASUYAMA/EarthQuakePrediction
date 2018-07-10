@@ -13,7 +13,7 @@ map_fn = None
 keep_remainder = True
 save_ply_fn = None
 
-num_class = 9
+num_class = 2
 
 sample_num = 160
 
@@ -21,9 +21,9 @@ batch_size = 10
 
 num_epochs = 1024
 
-step_val = 500
+step_val = 1024
 
-learning_rate_base = 0.01
+learning_rate_base = 0.00001
 decay_steps = 8000
 decay_rate = 0.6
 learning_rate_min = 0.00001
@@ -64,9 +64,11 @@ sampling = 'random'
 optimizer = 'adam'
 epsilon = 1e-2
 
+#optimizer = 'momentum'
+#momentum = 0.9
+
 data_dim = 4
 use_extra_features = True
 with_normal_feature = False
 with_X_transformation = True
 sorting_method = None
-

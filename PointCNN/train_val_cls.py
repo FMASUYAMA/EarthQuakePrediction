@@ -192,6 +192,7 @@ def main():
     lr_exp_op = tf.train.exponential_decay(setting.learning_rate_base, global_step, setting.decay_steps,
                                            setting.decay_rate, staircase=True)
     lr_clip_op = tf.maximum(lr_exp_op, setting.learning_rate_min)
+    print('learning_rate:'+str(lr_clip_op)) # added saito 7/10
     _ = tf.summary.scalar('learning_rate', tensor=lr_clip_op, collections=['train'])
     reg_loss = setting.weight_decay * tf.losses.get_regularization_loss()
     if setting.optimizer == 'adam':
